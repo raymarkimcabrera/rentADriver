@@ -2,10 +2,8 @@ package com.renta.renta_driver.rest;
 
 
 
-import com.skuld.user.rent_a.model.autocomplete.SuggestionList;
-import com.skuld.user.rent_a.model.reverse_geocoder.ReverseGeocoder;
-import com.skuld.user.rent_a.model.reverse_geocoder.ReverseGeocoderResponse;
-
+import com.renta.renta_driver.model.autocomplete.SuggestionList;
+import com.renta.renta_driver.model.reverse_geocoder.ReverseGeocoderResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

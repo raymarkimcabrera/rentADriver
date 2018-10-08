@@ -3,7 +3,7 @@ package com.renta.renta_driver.model.transaction;
 import com.google.firebase.firestore.ServerTimestamp;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.skuld.user.rent_a.model.offer.Offer;
+import com.renta.renta_driver.model.offer.Offer;
 
 import java.io.Serializable;
 import java.util.Date;
