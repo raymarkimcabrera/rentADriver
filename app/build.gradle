@@ -21,7 +21,7 @@ android {
             resValue "string", "here_api_version", "6.2"
         }
 
-        debug{
+        debug {
             resValue "string", "facebook_app_id", "1017245905150367"
             resValue "string", "fb_login_protocol_scheme", "fb1017245905150367"
             resValue "string", "here_app_id", "y5fHswCIlivtUId6Ehsr"

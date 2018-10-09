@@ -29,6 +29,7 @@ public class GeneralUtils {
     }
 
     public static void setDefaultRecyclerView(Context context, RecyclerView recyclerView, RecyclerView.Adapter adapter) {
+        recyclerView.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
