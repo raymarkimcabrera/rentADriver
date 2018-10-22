@@ -86,6 +86,9 @@ public class DashboardActivity extends BaseActivity {
                         startActivity(CarListActivity.newIntent(mContext));
 //                        startActivity(TransactionsHistoryActivity.newIntent(mContext));
                         return true;
+                    case R.id.menuOffers:
+                        startActivity(OffersListActivity.newIntent(mContext));
+                        return true;
                 }
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 return true;

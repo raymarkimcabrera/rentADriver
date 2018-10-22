@@ -88,12 +88,13 @@ public class CarListActivity extends BaseActivity implements CarListView, CarLis
         mNoCarLinearLayout.setVisibility(View.GONE);
         mCarListRecyclerViewAdapter = new CarListRecyclerViewAdapter(mContext, carList, this);
 
-        mCarsRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(mContext);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        mCarsRecyclerView.setLayoutManager(llm);
-        mCarsRecyclerView.setAdapter(mCarListRecyclerViewAdapter);
-        mCarListRecyclerViewAdapter.notifyDataSetChanged();
+        GeneralUtils.setDefaultRecyclerView(mContext, mCarsRecyclerView, mCarListRecyclerViewAdapter);
+//        mCarsRecyclerView.setHasFixedSize(true);
+//        LinearLayoutManager llm = new LinearLayoutManager(mContext);
+//        llm.setOrientation(LinearLayoutManager.VERTICAL);
+//        mCarsRecyclerView.setLayoutManager(llm);
+//        mCarsRecyclerView.setAdapter(mCarListRecyclerViewAdapter);
+//        mCarListRecyclerViewAdapter.notifyDataSetChanged();
     }
 
     @Override

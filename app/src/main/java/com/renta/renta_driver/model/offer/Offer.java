@@ -2,8 +2,10 @@ package com.renta.renta_driver.model.offer;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.renta.renta_driver.model.car.Car;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Offer implements Serializable {
 
@@ -12,14 +14,22 @@ public class Offer implements Serializable {
     private String driverID;
 
     @Expose
-    @SerializedName("carID")
-    private String carID;
+    @SerializedName("car")
+    private Car car;
 
     @Expose
     @SerializedName("price")
-    private Double price;
+    private int price;
 
-    public void setPrice(Double price) {
+    @Expose
+    @SerializedName("createdAt")
+    private Date createdAt;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -31,12 +41,19 @@ public class Offer implements Serializable {
         this.driverID = driverID;
     }
 
-    public String getCarID() {
-        return carID;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCarID(String carID) {
-        this.carID = carID;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 }

@@ -17,6 +17,9 @@
             android:id="@+id/menuMessages"
             android:title="@string/messages"/>
 
+        <item
+            android:id="@+id/menuOffers"
+            android:title="Offers"/>
 
         <item
             android:id="@+id/menuHistory"

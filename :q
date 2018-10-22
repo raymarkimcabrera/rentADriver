@@ -1,0 +1,31 @@
+[33mcommit ec93768c43dddbf69d2b76a846aec09c9eb23319[m
+Author: Raymarkim Cabrera <kim.cabrera@coreproc.ph>
+Date:   Tue Oct 9 13:41:32 2018 +0800
+
+    Add car activity
+
+[33mcommit 1b1980ee3065f020dcc18b5451ce58ecd3bb54d6[m
+Author: Raymarkim Cabrera <kim.cabrera@coreproc.ph>
+Date:   Tue Oct 9 02:27:29 2018 +0800
+
+    Added login and register
+
+[33mcommit 4b0dca1aac947fee4309130203d8b8688ba14e62[m
+Author: Raymarkim Cabrera <kim.cabrera@coreproc.ph>
+Date:   Tue Oct 9 01:32:34 2018 +0800
+
+    Added models
+    Added ApiInterface
+    Added dependencies
+
+[33mcommit bba3003501e3bb97a0b7b3e806360db93cacfae9[m
+Author: Raymarkim Cabrera <kim.cabrera@coreproc.ph>
+Date:   Tue Oct 9 01:21:26 2018 +0800
+
+    Add firebase
+
+[33mcommit 76c20210f3372360cb94c9b982eb80c914d2739e[m
+Author: Raymarkim Cabrera <kim.cabrera@coreproc.ph>
+Date:   Tue Oct 9 01:15:29 2018 +0800
+
+    Initial commit

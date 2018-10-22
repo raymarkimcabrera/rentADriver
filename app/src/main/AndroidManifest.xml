@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.renta.renta_driver">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -54,7 +56,9 @@
             android:name=".activity.RegisterActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.CarListActivity" />
-        <activity android:name=".activity.AddCarActivity"></activity>
+        <activity android:name=".activity.AddCarActivity" />
+        <activity android:name=".activity.OffersListActivity" />
+        <activity android:name=".activity.OfferActivity"></activity>
     </application>
 
 </manifest>
