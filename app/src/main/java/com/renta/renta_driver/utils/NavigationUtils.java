@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.content.FileProvider;
 
 public class NavigationUtils {
 
@@ -52,6 +53,7 @@ public class NavigationUtils {
 
     public static void startCameraActivity(Activity activity, Uri fileUri, int requestCode) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         startActivityForResult(activity, intent, requestCode);
     }

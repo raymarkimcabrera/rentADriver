@@ -36,7 +36,7 @@ public class FileUtil {
         return Uri.fromFile(generateImageFile());
     }
 
-    private File generateImageFile() {
+    public File generateImageFile() {
         return new File(generateDirectoryFile().getPath() + File.separator + "IMG_" + DateUtil.getTimeStamp()
                 + ".jpg");
     }

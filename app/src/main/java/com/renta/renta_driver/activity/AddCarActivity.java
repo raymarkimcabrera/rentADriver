@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -100,7 +101,10 @@ public class AddCarActivity extends BaseActivity implements CarListView {
     protected void permissionGranted(int requestCode) {
         if (requestCode == REQUEST_CODE_PERMISSION_CAMERA_AND_STORAGE) {
             FileUtil mFileUtil = new FileUtil(mContext);
-            Uri fileUri = mFileUtil.generateImageFileUri();
+//            Uri fileUri = mFileUtil.generateImageFileUri();
+            Uri fileUri = FileProvider.getUriForFile(mContext,
+                    mContext.getApplicationContext().getPackageName()
+                            + ".my.package.name.provider", mFileUtil.generateImageFile());
             if (fileUri != null) {
                 mFileUri = fileUri;
                 NavigationUtils.startCameraActivity(this, mFileUri, REQUEST_IMAGE_CAPTURE);
