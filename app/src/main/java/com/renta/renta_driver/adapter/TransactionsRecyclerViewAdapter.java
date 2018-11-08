@@ -54,11 +54,12 @@ public class TransactionsRecyclerViewAdapter extends RecyclerView.Adapter<Transa
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy hh:mm aaa");
 
-        holder.mPickUpDateTextView.setSelected(true);
-        holder.mPickUpDateTextView.setText(transaction.getPickUpAddress());
+        holder.mPickUpAddressTextView.setSelected(true);
+        holder.mPickUpAddressTextView.setText(transaction.getPickUpAddress());
         holder.mDestinationTextView.setSelected(true);
         holder.mDestinationTextView.setText(transaction.getDestinationAddress());
-
+        holder.mPickUpDateTextView.setText(simpleDateFormat.format(transaction.getStartDate()));
+        holder.mDestinationDateTextView.setText(simpleDateFormat.format(transaction.getEndDate()));
 
         holder.mTransactionLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override

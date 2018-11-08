@@ -69,6 +69,10 @@
         <activity android:name=".activity.OffersListActivity" />
         <activity android:name=".activity.OfferActivity" />
         <activity android:name=".activity.TransactionHistoryActivity"></activity>
+
+        <activity android:name=".activity.MessageListActivity"></activity>
+        <activity android:name=".activity.MessagesActivity"></activity>
+
     </application>
 
 </manifest>

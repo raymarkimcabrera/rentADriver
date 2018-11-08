@@ -32,8 +32,5 @@ public class MessageList implements Serializable{
         this.thread = thread;
     }
 
-    public Message getLastMessage(){
-        int size = thread.size();
-        return thread.get(size);
-    }
+
 }

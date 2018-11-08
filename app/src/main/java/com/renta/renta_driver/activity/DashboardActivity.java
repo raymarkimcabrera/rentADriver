@@ -80,7 +80,7 @@ public class DashboardActivity extends BaseActivity {
                         startActivity(DashboardActivity.newIntent(mContext));
                         return true;
                     case R.id.menuMessages:
-//                        startActivity(MessageListActivity.newIntent(mContext));
+                        startActivity(MessageListActivity.newIntent(mContext));
                         return true;
                     case R.id.menuItemCars:
                         startActivity(CarListActivity.newIntent(mContext));
