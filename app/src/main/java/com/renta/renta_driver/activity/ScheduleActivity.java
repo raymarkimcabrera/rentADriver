@@ -57,20 +57,6 @@ public class ScheduleActivity extends BaseActivity implements TransactionView {
 
     @Override
     public void onGetTransactionViewSuccess(List<Transaction> transactionList){
-        List<EventDay> eventDayList = new ArrayList<>();
-
-        for (Transaction transaction : transactionList){
-            Calendar eventDate = DateUtil.convertDateToCalendar(transaction.getStartDate());
-            EventDay eventDay = new EventDay(eventDate, R.drawable.event_circle);
-            eventDayList.add(eventDay);
-        }
-
-        mCalendarView.setEvents(eventDayList);
-        try {
-            mCalendarView.setDate(Calendar.getInstance());
-        } catch (OutOfDateRangeException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -99,8 +85,6 @@ public class ScheduleActivity extends BaseActivity implements TransactionView {
         EventDay eventDay = new EventDay(eventDate, R.drawable.event_circle);
         mEventDayList.add(eventDay);
 
-        List<EventDay> emptyList = new ArrayList<>();
-       mCalendarView.setEvents(emptyList);
         mCalendarView.setEvents(mEventDayList);
         try {
             mCalendarView.setDate(Calendar.getInstance());

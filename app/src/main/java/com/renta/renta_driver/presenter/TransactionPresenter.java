@@ -43,9 +43,9 @@ public class TransactionPresenter extends BasePresenter {
                 if (queryDocumentSnapshots.getDocuments().size() != 0) {
                     for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
                         Car car = documentSnapshot.toObject(Car.class);
-                        if (car.getTransactionID() != null){
-                            if (!car.getTransactionID().isEmpty()){
-                                Log.e("onSuccess:", "onSuccess: " + car.getTransactionID() );
+                        if (car.getTransactionID() != null) {
+                            if (!car.getTransactionID().isEmpty()) {
+                                Log.e("onSuccess:", "onSuccess: " + car.getTransactionID());
                                 mFirebaseFirestore.collection("transaction").document(car.getTransactionID())
                                         .get()
                                         .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -88,8 +88,7 @@ public class TransactionPresenter extends BasePresenter {
         showProgressDialog(mContext);
 
         Query getTransactionsID = mFirebaseFirestore.collection("car")
-                .whereEqualTo("driverID", userID)
-                .whereEqualTo("status", "PAID");
+                .whereEqualTo("driverID", userID);
 
         getTransactionsID.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -97,16 +96,17 @@ public class TransactionPresenter extends BasePresenter {
                 if (queryDocumentSnapshots.getDocuments().size() != 0) {
                     for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
                         Car car = documentSnapshot.toObject(Car.class);
-                        if (car.getTransactionID() != null){
-                            if (!car.getTransactionID().isEmpty()){
-                                Log.e("onSuccess:", "onSuccess: " + car.getTransactionID() );
+                        if (car.getTransactionID() != null) {
+                            if (!car.getTransactionID().isEmpty()) {
+                                Log.e("onSuccess:", "onSuccess: " + car.getTransactionID());
                                 mFirebaseFirestore.collection("transaction").document(car.getTransactionID())
                                         .get()
                                         .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                             @Override
                                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                                 Transaction transaction = documentSnapshot.toObject(Transaction.class);
-                                                mTransactionView.onGetTransactions(transaction);
+                                                if (transaction.getStatus().equals("PAID"))
+                                                    mTransactionView.onGetTransactions(transaction);
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
