@@ -80,5 +80,84 @@ public class TransactionPresenter extends BasePresenter {
         });
     }
 
+    public void getPaidTransactions(String userID) {
+        mTransactionList = new ArrayList<>();
+
+        initFirebase();
+
+        showProgressDialog(mContext);
+
+        Query getTransactionsID = mFirebaseFirestore.collection("car")
+                .whereEqualTo("driverID", userID)
+                .whereEqualTo("status", "PAID");
+
+        getTransactionsID.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if (queryDocumentSnapshots.getDocuments().size() != 0) {
+                    for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+                        Car car = documentSnapshot.toObject(Car.class);
+                        if (car.getTransactionID() != null){
+                            if (!car.getTransactionID().isEmpty()){
+                                Log.e("onSuccess:", "onSuccess: " + car.getTransactionID() );
+                                mFirebaseFirestore.collection("transaction").document(car.getTransactionID())
+                                        .get()
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                Transaction transaction = documentSnapshot.toObject(Transaction.class);
+                                                mTransactionView.onGetTransactions(transaction);
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                hideProgressDialog();
+                                                mTransactionView.onGetTransactionViewError();
+                                            }
+                                        });
+                            }
+                        }
+                    }
+                } else {
+                    mTransactionView.onNoTransaction();
+                }
+                hideProgressDialog();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                hideProgressDialog();
+
+                mTransactionView.onGetTransactionViewError();
+            }
+        });
+    }
+
+    public void getTransactionById(String id) {
+
+        initFirebase();
+
+        showProgressDialog(mContext);
+
+        mFirebaseFirestore.collection("transaction")
+                .document(id)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        hideProgressDialog();
+                        mTransactionView.onGetTransaction(documentSnapshot.toObject(Transaction.class));
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        hideProgressDialog();
+                        mTransactionView.onGetTransactionError();
+                    }
+                });
+
+    }
 
 }

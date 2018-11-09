@@ -47,7 +47,7 @@ public class ScheduleActivity extends BaseActivity implements TransactionView {
     protected void onResume() {
         super.onResume();
         mEventDayList = new ArrayList<>();
-        mTransactionPresenter.getTransactions(Preferences.getString(mContext, Preferences.USER_ID));
+        mTransactionPresenter.getPaidTransactions(Preferences.getString(mContext, Preferences.USER_ID));
     }
 
     @Override

@@ -96,8 +96,7 @@ public class TransactionHistoryActivity extends BaseActivity implements Transact
         mTransactionsRecyclerViewAdapter = new TransactionsRecyclerViewAdapter(mContext, mTransactionList, new TransactionsRecyclerViewAdapter.OnClickTransactionListener() {
             @Override
             public void OnTransactionSelected(Transaction transaction) {
-                String uri = "waze://?ll=" + transaction.getDestinationLocation().getLatitude() + ", " + transaction.getDestinationLocation().getLongitude() + "&z=10";
-                startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri)));
+               startActivity(TransactionDetailsActivity.newIntent(mContext, transaction));
             }
         });
 
