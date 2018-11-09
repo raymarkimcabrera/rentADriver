@@ -29,7 +29,7 @@
             android:textSize="12sp"/>
     </LinearLayout>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatarImageView"
         android:layout_width="45dp"
         android:layout_height="45dp"

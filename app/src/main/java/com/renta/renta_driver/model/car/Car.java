@@ -40,7 +40,7 @@ public class Car implements Serializable {
     }
 
     public String getTransactionID() {
-        return transactionID;
+        return transactionID == null ? "": transactionID;
     }
 
     public void setTransactionID(String transactionID) {

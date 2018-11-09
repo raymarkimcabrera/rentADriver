@@ -43,24 +43,26 @@ public class TransactionPresenter extends BasePresenter {
                 if (queryDocumentSnapshots.getDocuments().size() != 0) {
                     for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
                         Car car = documentSnapshot.toObject(Car.class);
-                        Log.e("onSuccess:", "onSuccess: " + car.getTransactionID() );
-                        if (!car.getTransactionID().isEmpty()){
-                            mFirebaseFirestore.collection("transaction").document(car.getTransactionID())
-                                    .get()
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                            Transaction transaction = documentSnapshot.toObject(Transaction.class);
-                                            mTransactionView.onGetTransactions(transaction);
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            hideProgressDialog();
-                                            mTransactionView.onGetTransactionViewError();
-                                        }
-                                    });
+                        if (car.getTransactionID() != null){
+                            if (!car.getTransactionID().isEmpty()){
+                                Log.e("onSuccess:", "onSuccess: " + car.getTransactionID() );
+                                mFirebaseFirestore.collection("transaction").document(car.getTransactionID())
+                                        .get()
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                Transaction transaction = documentSnapshot.toObject(Transaction.class);
+                                                mTransactionView.onGetTransactions(transaction);
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                hideProgressDialog();
+                                                mTransactionView.onGetTransactionViewError();
+                                            }
+                                        });
+                            }
                         }
                     }
                 } else {

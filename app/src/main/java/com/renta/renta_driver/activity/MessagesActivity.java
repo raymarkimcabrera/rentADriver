@@ -23,6 +23,7 @@ import com.renta.renta_driver.model.driver.Driver;
 import com.renta.renta_driver.model.user.User;
 import com.renta.renta_driver.presenter.MessagePresenter;
 import com.renta.renta_driver.presenter.UsersPresenter;
+import com.renta.renta_driver.utils.ImageUtil;
 import com.renta.renta_driver.utils.Preferences;
 import com.renta.renta_driver.view.MessageListView;
 import com.renta.renta_driver.view.UsersView;
@@ -33,6 +34,7 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessagesActivity extends BaseActivity implements MessageListView, UsersView {
 
@@ -45,6 +47,7 @@ public class MessagesActivity extends BaseActivity implements MessageListView, U
     private MessageList mMessageList;
     private MessagePresenter mMessagePresenter;
     private UsersPresenter mUsersPresenter;
+    private CircleImageView mAvatarImageView;
 
 
     @Override
@@ -78,9 +81,10 @@ public class MessagesActivity extends BaseActivity implements MessageListView, U
         mUsersPresenter = new UsersPresenter(mContext, this);
     }
 
-    public static Intent newIntent(Context context, MessageList messageList) {
+    public static Intent newIntent(Context context, MessageList messageList, String title) {
         Intent intent = new Intent(context, MessagesActivity.class);
         intent.putExtra("THREAD", messageList);
+        intent.putExtra("TITLE", title);
         return intent;
     }
 
@@ -91,6 +95,9 @@ public class MessagesActivity extends BaseActivity implements MessageListView, U
 
     private void getArgs() {
         mMessageList = (MessageList) getIntent().getSerializableExtra("THREAD");
+//        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getIntent().getStringExtra("TITLE"));
     }
 
     private void initUi() {
@@ -103,15 +110,17 @@ public class MessagesActivity extends BaseActivity implements MessageListView, U
             if (!message.getContent().isEmpty()) {
 
                 View messageView;
-                if (message.getSenderID().equals(Preferences.getString(mContext, Preferences.USER_ID)))
+                if (message.getSenderID().equals(Preferences.getString(mContext, Preferences.USER_ID))){
                     messageView = userMessageView;
-                else
-                    messageView = driverMessageView;
 
+                }
+                else{
+                    messageView = driverMessageView;
+                }
 
                 TextView contentTextView = (TextView) messageView.findViewById(R.id.contentTextView);
                 TextView createdAtTextView = (TextView) messageView.findViewById(R.id.createdAtTextView);
-                ImageView avatarImageView = (ImageView) messageView.findViewById(R.id.avatarImageView);
+                mAvatarImageView = (CircleImageView) messageView.findViewById(R.id.avatarImageView);
 
                 contentTextView.setText(message.getContent());
                 createdAtTextView.setText(prettyTime.format(message.getCreatedAt()));
@@ -131,6 +140,7 @@ public class MessagesActivity extends BaseActivity implements MessageListView, U
 
     @Override
     public void onGetConversationSuccess(MessageList messageLists) {
+        mMessageList = messageLists;
         initUi();
     }
 
@@ -162,23 +172,43 @@ public class MessagesActivity extends BaseActivity implements MessageListView, U
 
     @Override
     public void onGetUserSuccess(Driver user) {
-        String message = mTextMessageEditText.getText().toString();
-        Date currentDate = new Date(System.currentTimeMillis());
-        String userId = Preferences.getString(mContext, Preferences.USER_ID);
 
-        Message messageBody = new Message();
+            String message = mTextMessageEditText.getText().toString();
+            Date currentDate = new Date(System.currentTimeMillis());
+            String userId = Preferences.getString(mContext, Preferences.USER_ID);
 
-        messageBody.setContent(message);
-        messageBody.setSenderID(userId);
-        messageBody.setCreatedAt(currentDate);
-        messageBody.setSenderName(user.getFirstName() +" "+ user.getLastName());
+            Message messageBody = new Message();
 
-        mMessagePresenter.sendMessage(mMessageList, messageBody);
+            messageBody.setContent(message);
+            messageBody.setSenderID(userId);
+            messageBody.setCreatedAt(currentDate);
+            messageBody.setSenderName(user.getFirstName() +" "+ user.getLastName());
 
+            mMessagePresenter.sendMessage(mMessageList, messageBody);
     }
 
     @Override
     public void onGetUserError() {
         Toast.makeText(mContext, "Failed to connect to server. Please try again.", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUserUpdateSuccess() {
+
+    }
+
+    @Override
+    public void onUserUpdateError() {
+
+    }
+
+    @Override
+    public void onGetCustomerProfileSuccess(User user) {
+
+    }
+
+    @Override
+    public void onGetCustomerProfileError() {
+
     }
 }

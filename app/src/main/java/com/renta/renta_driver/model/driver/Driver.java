@@ -47,6 +47,18 @@ public class Driver implements Serializable {
     @SerializedName("email")
     private String email;
 
+    @Expose
+    @SerializedName("imageUrl")
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl == null ? "" : imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public String getUserName() {
         return userName;
     }

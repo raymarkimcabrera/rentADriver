@@ -9,4 +9,12 @@ public interface UsersView {
     void onGetUserSuccess(Driver driver);
 
     void onGetUserError();
+
+    void onUserUpdateSuccess();
+
+    void onUserUpdateError();
+
+    void onGetCustomerProfileSuccess(User user);
+
+    void onGetCustomerProfileError();
 }

@@ -89,5 +89,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:15.0.1'
 
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
+
+
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }
 apply plugin: 'com.google.gms.google-services'

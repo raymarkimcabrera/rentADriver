@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.renta.renta_driver.BaseActivity;
 import com.renta.renta_driver.R;
@@ -25,6 +27,9 @@ public class TransactionHistoryActivity extends BaseActivity implements Transact
 
     @BindView(R.id.transactionHistoryRecyclerView)
     RecyclerView mTransactionHistoryRecyclerView;
+
+    @BindView(R.id.noTransactionTextView)
+    TextView mNoTransactionsTextView;
 
     private TransactionPresenter mTransactionPresenter;
     private List<Transaction> mTransactionList;
@@ -86,15 +91,13 @@ public class TransactionHistoryActivity extends BaseActivity implements Transact
     @Override
     public void onGetTransactions(Transaction transaction) {
         mTransactionList.add(transaction);
-
+        mTransactionHistoryRecyclerView.setVisibility(View.VISIBLE);
+        mNoTransactionsTextView.setVisibility(View.GONE);
         mTransactionsRecyclerViewAdapter = new TransactionsRecyclerViewAdapter(mContext, mTransactionList, new TransactionsRecyclerViewAdapter.OnClickTransactionListener() {
             @Override
             public void OnTransactionSelected(Transaction transaction) {
-                String uri = "waze://?ll="+transaction.getDestinationLocation().getLatitude()+", "+transaction.getDestinationLocation().getLongitude()+"&z=10";
+                String uri = "waze://?ll=" + transaction.getDestinationLocation().getLatitude() + ", " + transaction.getDestinationLocation().getLongitude() + "&z=10";
                 startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri)));
-//                Toast.makeText(mContext, transaction.getId(), Toast.LENGTH_SHORT).show();
-//                startActivity(TransactionDetailsActivity.newIntent(mContext, transaction));
-//                finish();
             }
         });
 
