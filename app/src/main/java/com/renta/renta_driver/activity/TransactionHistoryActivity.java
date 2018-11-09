@@ -108,4 +108,14 @@ public class TransactionHistoryActivity extends BaseActivity implements Transact
         mTransactionHistoryRecyclerView.setAdapter(mTransactionsRecyclerViewAdapter);
         mTransactionsRecyclerViewAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void onGetTransaction(Transaction transaction) {
+
+    }
+
+    @Override
+    public void onGetTransactionError() {
+
+    }
 }

@@ -169,6 +169,9 @@ public class DashboardActivity extends BaseActivity implements OffersView, Users
                     case R.id.menuHistory:
                         startActivity(TransactionHistoryActivity.newIntent(mContext));
                         return true;
+                    case R.id.menuSchedule:
+                        startActivity(ScheduleActivity.newIntent(mContext));
+                        return true;
                 }
                 return true;
             }

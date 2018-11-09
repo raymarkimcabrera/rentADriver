@@ -73,6 +73,7 @@
         <activity android:name=".activity.MessageListActivity"></activity>
         <activity android:name=".activity.MessagesActivity"></activity>
         <activity android:name=".activity.ProfileActivity"></activity>
+        <activity android:name=".activity.ScheduleActivity"></activity>
 
     </application>
 

@@ -18,4 +18,8 @@ public interface TransactionView {
     void onTransactionStatusUpdateError();
 
     void onGetTransactions(Transaction transaction);
+
+    void onGetTransaction(Transaction transaction);
+
+    void onGetTransactionError();
 }

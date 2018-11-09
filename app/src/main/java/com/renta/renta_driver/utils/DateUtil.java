@@ -41,6 +41,13 @@ public class DateUtil {
         return convertedDate;
     }
 
+    public static Calendar convertDateToCalendar(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
+    }
+
+
     public static String getHistoryTimeStamp(String dateTimeString) {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
