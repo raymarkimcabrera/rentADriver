@@ -54,6 +54,8 @@ public class RegisterPresenter extends BasePresenter {
         driver.setContactNumber(contactNumber);
         driver.setPassword(password);
 
+        driver.setImageUrl("");
+
         showProgressDialog(mContext);
 
         Query checkEmailIfUsed = mFirebaseFirestore.collection("drivers")
