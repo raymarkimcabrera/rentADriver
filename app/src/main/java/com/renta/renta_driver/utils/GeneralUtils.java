@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,4 +58,7 @@ public class GeneralUtils {
         return currentDate;
     }
 
+    public static String toPesoFormat(double peso) {
+        return "₱" + new DecimalFormat("#,###,##0.00").format(peso);
+    }
 }

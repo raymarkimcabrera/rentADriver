@@ -23,6 +23,7 @@ import com.renta.renta_driver.model.payment.Payment;
 import com.renta.renta_driver.model.transaction.Transaction;
 import com.renta.renta_driver.presenter.PaymentPresenter;
 import com.renta.renta_driver.presenter.TransactionPresenter;
+import com.renta.renta_driver.utils.GeneralUtils;
 import com.renta.renta_driver.view.PaymentView;
 import com.renta.renta_driver.view.TransactionView;
 import com.renta.renta_driver.view.UsersView;
@@ -200,7 +201,8 @@ public class TransactionDetailsActivity extends BaseActivity implements Transact
         mPickUpDateTextView.setText(simpleDateFormat.format(mTransaction.getStartDate()));
         mDestinationDateTextView.setText(simpleDateFormat.format(mTransaction.getEndDate()));
         Log.e(TAG, "initialize: " + mPayment );
-        mCostTextView.setText(String.valueOf(mPayment.getTotalAmount()));
+        mCostTextView.setText(GeneralUtils.toPesoFormat(Double.parseDouble(String.valueOf(mTransaction.getOfferAccepted().getPrice()))));
+
 
         mCarModelTextView.setText(mTransaction.getOfferAccepted().getCar().getCarModel());
 
